@@ -1,0 +1,49 @@
+{
+  "manifestVersion": 1,
+  "id": "copilot-agent-traces",
+  "version": "0.1.0",
+  "name": "Copilot Agent Traces",
+  "description": "View GitHub Copilot agent session traces on Azure DevOps work items. Powered by Application Insights and OpenTelemetry.",
+  "publisher": "YOUR_PUBLISHER_ID",
+  "targets": [
+    { "id": "Microsoft.VisualStudio.Services" }
+  ],
+  "icons": {
+    "default": "static/icon.png"
+  },
+  "categories": ["Azure Boards"],
+  "tags": ["copilot", "observability", "opentelemetry", "traces", "ai"],
+  "scopes": ["vso.work"],
+  "demands": [],
+  "contributions": [
+    {
+      "id": "agent-traces-tab",
+      "type": "ms.vso.work-web.work-item-form-page",
+      "description": "Shows Copilot agent traces for this work item",
+      "targets": [
+        "ms.vso.work-web.work-item-form"
+      ],
+      "properties": {
+        "name": "Agent Traces",
+        "uri": "dist/trace-tab.html"
+      }
+    },
+    {
+      "id": "agent-traces-settings",
+      "type": "ms.vso.web.hub",
+      "description": "Configure Copilot Agent Traces connection settings",
+      "targets": [
+        "ms.vso.web.project-admin-hub-group"
+      ],
+      "properties": {
+        "name": "Agent Traces Settings",
+        "uri": "dist/settings.html",
+        "icon": "static/icon.png"
+      }
+    }
+  ],
+  "files": [
+    { "path": "dist", "addressable": true },
+    { "path": "static", "addressable": true }
+  ]
+}

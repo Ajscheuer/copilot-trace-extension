@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agent Traces Settings</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', -apple-system, sans-serif; color: #323130; padding: 24px; max-width: 600px; }
+    h2 { font-size: 18px; margin-bottom: 4px; }
+    .subtitle { color: #605e5c; font-size: 13px; margin-bottom: 24px; }
+    label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; margin-top: 16px; }
+    input { width: 100%; padding: 6px 10px; border: 1px solid #d2d0ce; border-radius: 2px; font-size: 13px; font-family: inherit; }
+    input:focus { outline: none; border-color: #0078d4; }
+    .help { font-size: 12px; color: #605e5c; margin-top: 4px; }
+    .btn { background: #0078d4; color: #fff; border: none; border-radius: 2px; padding: 8px 20px; font-size: 13px; cursor: pointer; margin-top: 24px; font-family: inherit; }
+    .btn:hover { background: #106ebe; }
+    .status { margin-top: 12px; font-size: 13px; padding: 8px 12px; border-radius: 2px; display: none; }
+    .status.success { display: block; background: #dff6dd; color: #107c10; }
+    .status.error { display: block; background: #fef2f2; color: #991b1b; }
+    .instructions { background: #faf9f8; border: 1px solid #edebe9; border-radius: 4px; padding: 16px; margin-top: 24px; }
+    .instructions h3 { font-size: 14px; margin-bottom: 8px; }
+    .instructions ol { padding-left: 20px; }
+    .instructions li { font-size: 12px; color: #605e5c; margin-bottom: 6px; }
+    code { background: #f3f2f1; padding: 1px 4px; border-radius: 2px; font-family: 'Cascadia Code', Consolas, monospace; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <h2>Copilot Agent Traces Settings</h2>
+  <div class="subtitle">Connect to Application Insights to view Copilot agent traces on work items.</div>
+
+  <label for="appId">Application ID</label>
+  <input type="text" id="appId" placeholder="e.g., a1b2c3d4-e5f6-7890-abcd-ef1234567890" />
+  <div class="help">Found in Azure Portal → Application Insights → API Access → Application ID</div>
+
+  <label for="apiKey">API Key</label>
+  <input type="password" id="apiKey" placeholder="Paste your API key here" />
+  <div class="help">Create one in API Access → Create API Key → select "Read telemetry"</div>
+
+  <button class="btn" id="saveBtn">Save Settings</button>
+  <div class="status" id="status"></div>
+
+  <div class="instructions">
+    <h3>Setup Instructions</h3>
+    <ol>
+      <li>Open the Azure Portal and navigate to your Application Insights resource.</li>
+      <li>Go to <strong>API Access</strong> (under Configure).</li>
+      <li>Copy the <strong>Application ID</strong> and paste it above.</li>
+      <li>Click <strong>Create API Key</strong>, select "Read telemetry", and paste the key above.</li>
+      <li>Click Save Settings. The Agent Traces tab will appear on all work items.</li>
+      <li>Ensure developers have <code>github.copilot.chat.otel.enabled: true</code> in VS Code.</li>
+      <li>Tag traces with work item IDs via branch naming (e.g., <code>feature/1234-description</code>).</li>
+    </ol>
+  </div>
+</body>
+</html>

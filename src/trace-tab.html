@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Traces</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', -apple-system, sans-serif; color: #323130; font-size: 13px; padding: 16px; background: #fff; }
+    .loading { text-align: center; padding: 40px; color: #605e5c; }
+    .loading .spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid #e1dfdd; border-top-color: #0078d4; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 12px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error { background: #fef2f2; border: 1px solid #fca5a5; padding: 12px 16px; border-radius: 4px; color: #991b1b; }
+    .empty { text-align: center; padding: 40px; color: #a19f9d; }
+    .empty .icon { font-size: 48px; margin-bottom: 12px; }
+    .info-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .info-bar h3 { font-size: 14px; font-weight: 600; }
+    .conn { font-size: 11px; color: #107c10; display: flex; align-items: center; gap: 4px; }
+    .conn .dot { width: 7px; height: 7px; background: #107c10; border-radius: 50%; }
+    .refresh-btn { background: #f3f2f1; border: 1px solid #d2d0ce; border-radius: 2px; padding: 4px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-left: 8px; }
+    .refresh-btn:hover { background: #e1dfdd; }
+    #trace-container { min-height: 200px; }
+    .config-warning { background: #fef3cd; border: 1px solid #ffc107; padding: 12px 16px; border-radius: 4px; color: #856404; }
+    .config-warning a { color: #0078d4; }
+  </style>
+</head>
+<body>
+  <div id="trace-container">
+    <div class="loading">
+      <div class="spinner"></div>
+      <div>Loading agent traces...</div>
+    </div>
+  </div>
+</body>
+</html>
