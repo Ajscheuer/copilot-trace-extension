@@ -26,15 +26,19 @@
 </head>
 <body>
   <h2>Copilot Agent Traces Settings</h2>
-  <div class="subtitle">Connect to Application Insights to view Copilot agent traces on work items.</div>
+  <div class="subtitle">Connect to Application Insights using Azure AD authentication. No secrets are stored.</div>
 
-  <label for="appId">Application ID</label>
+  <label for="appId">Application Insights App ID</label>
   <input type="text" id="appId" placeholder="e.g., a1b2c3d4-e5f6-7890-abcd-ef1234567890" />
-  <div class="help">Found in Azure Portal → Application Insights → API Access → Application ID</div>
+  <div class="help">Azure Portal → Application Insights → API Access → Application ID</div>
 
-  <label for="apiKey">API Key</label>
-  <input type="password" id="apiKey" placeholder="Paste your API key here" />
-  <div class="help">Create one in API Access → Create API Key → select "Read telemetry"</div>
+  <label for="clientId">Azure AD Client ID</label>
+  <input type="text" id="clientId" placeholder="e.g., a1b2c3d4-e5f6-7890-abcd-ef1234567890" />
+  <div class="help">Azure Portal → App registrations → your app → Overview → Application (client) ID</div>
+
+  <label for="tenantId">Azure AD Tenant ID</label>
+  <input type="text" id="tenantId" placeholder="e.g., a1b2c3d4-e5f6-7890-abcd-ef1234567890" />
+  <div class="help">Azure Portal → App registrations → your app → Overview → Directory (tenant) ID</div>
 
   <button class="btn" id="saveBtn">Save Settings</button>
   <div class="status" id="status"></div>
@@ -42,13 +46,13 @@
   <div class="instructions">
     <h3>Setup Instructions</h3>
     <ol>
-      <li>Open the Azure Portal and navigate to your Application Insights resource.</li>
-      <li>Go to <strong>API Access</strong> (under Configure).</li>
-      <li>Copy the <strong>Application ID</strong> and paste it above.</li>
-      <li>Click <strong>Create API Key</strong>, select "Read telemetry", and paste the key above.</li>
-      <li>Click Save Settings. The Agent Traces tab will appear on all work items.</li>
-      <li>Ensure developers have <code>github.copilot.chat.otel.enabled: true</code> in VS Code.</li>
-      <li>Tag traces with work item IDs via branch naming (e.g., <code>feature/1234-description</code>).</li>
+      <li>Go to Azure Portal → <strong>App registrations</strong> → New registration.</li>
+      <li>Name: <code>Copilot Trace Viewer</code>, Single tenant, Redirect URI: SPA → <code>https://andrewscheuer.gallerycdn.vsassets.io</code></li>
+      <li>Go to <strong>API permissions</strong> → Add → APIs my organization uses → search <code>Application Insights API</code> → Delegated → <code>Data.Read</code> → Add.</li>
+      <li>Click <strong>Grant admin consent</strong>.</li>
+      <li>Copy <strong>Application (client) ID</strong> and <strong>Directory (tenant) ID</strong> from Overview and paste above.</li>
+      <li>Go to your <strong>Application Insights</strong> resource → API Access → copy the <strong>Application ID</strong> and paste above.</li>
+      <li>Click Save Settings. The Agent Traces tab will authenticate automatically via Azure AD.</li>
     </ol>
   </div>
 </body>

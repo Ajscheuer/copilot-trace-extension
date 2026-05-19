@@ -9,6 +9,7 @@
     "publish": "npm run build && npx tfx-cli extension publish --manifest-globs vss-extension.json"
   },
   "dependencies": {
+    "@azure/msal-browser": "^3.27.0",
     "azure-devops-extension-sdk": "^4.0.2",
     "azure-devops-extension-api": "^4.0.0"
   },
